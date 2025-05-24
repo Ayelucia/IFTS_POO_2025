@@ -1,0 +1,28 @@
+<h1>Listado de Perros</h1>
+
+<form method="get">
+    <label for="estado">Filtrar por estado:</label>
+    <select name="estado" id="estado">
+        <option value="">-- Todos --</option>
+        <option value="disponible">Disponible</option>
+        <option value="reservado">Reservado</option>
+        <option value="adoptado">Adoptado</option>
+    </select>
+
+    <label for="dni">Filtrar por DNI de usuario:</label>
+    <input type="text" name="dni" placeholder="Ingrese DNI">
+
+    <button type="submit">Buscar</button>
+</form>
+
+<hr>
+
+<ul>
+    {% for perro in perros %}
+        <li>{{ perro.nombre }} - Estado: {{ perro.estado }}</li>
+    {% empty %}
+        <li>No se encontraron perros.</li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'inicio' %}">Volver al inicio</a>

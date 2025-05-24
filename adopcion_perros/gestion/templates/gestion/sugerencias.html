@@ -1,0 +1,26 @@
+<form method="get" action="{% url 'sugerir_perros' %}">
+    <label for="usuario_id">Seleccionar usuario:</label>
+    <select name="usuario_id" id="usuario_id" onchange="this.form.submit()">
+        {% for u in usuarios %}
+            <option value="{{ u.id }}" {% if u.id == usuario.id %}selected{% endif %}>{{ u.nombre }}</option>
+        {% endfor %}
+    </select>
+</form>
+
+<h2>Preferencias de {{ usuario.nombre }}</h2>
+<ul>
+    <li>Raza preferida: {{ usuario.preferencia_raza }}</li>
+    <li>Tamaño preferido: {{ usuario.preferencia_tamaño }}</li>
+    <li>Edad preferida: {{ usuario.preferencia_edad }}</li>
+</ul>
+
+<h3>Perros sugeridos:</h3>
+<ul>
+    {% for perro in sugerencias %}
+        <li>{{ perro.nombre }} - Edad: {{ perro.edad }} - Raza: {{ perro.raza }} - Tamaño: {{ perro.tamaño }}</li>
+    {% empty %}
+        <li>No hay perros que coincidan con estas preferencias.</li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'inicio' %}">⬅ Volver al inicio</a>

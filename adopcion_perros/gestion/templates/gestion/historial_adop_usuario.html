@@ -1,0 +1,12 @@
+<h2>Perfil de {{ usuario.nombre }}</h2>
+<p>DNI: {{ usuario.dni }}</p>
+<p>Email: {{ usuario.email }}</p>
+
+<h3>Historial de adopciones</h3>
+<ul>
+    {% for perro in historial %}
+        <li>{{ perro.nombre }} - {{ perro.raza }} - Estado: {{ perro.estado }}</li>
+    {% empty %}
+        <li>No ha adoptado ningún perro aún.</li>
+    {% endfor %}
+</ul>
